@@ -3,11 +3,13 @@ import { Briefcase, Users, MapPin, Award, BookOpen, Send, Star, Settings } from 
 import MapComponent from './components/MapComponent';
 import Sidebar from './components/Sidebar';
 import SidebarMobile from './components/SidebarMobile';
+import LoginPopup from './components/LoginPopup'; // Import the LoginPopup component
 
 function App() {
   const [activeTab, setActiveTab] = useState('jobs');
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false); // State to control the login popup
 
   const menuItems = [
     { id: 'jobs', icon: Briefcase, label: 'Job Listings' },
@@ -21,17 +23,13 @@ function App() {
   ];
 
   useEffect(() => {
+    setLoginPopupOpen(true);
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024); // Adjust the width as per your design
     };
 
-    // Set the initial screen size
     handleResize();
-
-    // Add event listener for window resizing
     window.addEventListener('resize', handleResize);
-
-    // Cleanup the event listener
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -62,6 +60,7 @@ function App() {
           <MapComponent onOpenSidebar={() => setSidebarOpen(true)} />
         </div>
       </main>
+      {isLoginPopupOpen && <LoginPopup onClose={() => setLoginPopupOpen(false)} />}
     </div>
   );
 }
