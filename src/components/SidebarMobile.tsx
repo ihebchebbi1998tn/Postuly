@@ -13,7 +13,7 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ menuItems, activeTab, setActiveTab, isOpen, onClose }) => {
+const SidebarMobile: React.FC<SidebarProps> = ({ menuItems, activeTab, setActiveTab, isOpen, onClose }) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const startX = useRef<number>(0);
   const currentX = useRef<number>(0);
@@ -69,14 +69,21 @@ const Sidebar: React.FC<SidebarProps> = ({ menuItems, activeTab, setActiveTab, i
     };
   }, [onClose]);
 
+  useEffect(() => {
+    // Reset transform when isOpen changes
+    if (sidebarRef.current) {
+      sidebarRef.current.style.transform = isOpen ? 'translateX(0)' : 'translateX(-100%)';
+    }
+  }, [isOpen]);
+
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300 ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={onClose}
-      />
+  className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+    isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+  }`}
+  onClick={onClose}
+/>
 
       <aside
         ref={sidebarRef}
@@ -130,27 +137,10 @@ const Sidebar: React.FC<SidebarProps> = ({ menuItems, activeTab, setActiveTab, i
               })}
             </ul>
           </nav>
-
-          <div className="p-4 border-t border-blue-500/20">
-            <div className="flex items-center space-x-3 px-4 py-3 rounded-lg bg-blue-500/5">
-              <div className="relative">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMBoNHTdNFu-NloeUZS5-L9aWbPTmqkCy-Tg&s"
-                  alt="User"
-                  className="h-10 w-10 rounded-full border-2 border-blue-400/50 shadow-[0_0_15px_rgba(59,130,246,0.3)]"
-                />
-                <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-400 border-2 border-gray-900 shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
-              </div>
-              <div>
-                <div className="text-sm font-medium text-blue-100">Iheb Chebbi</div>
-                <div className="text-xs text-blue-300/70">CEO & Lead developer</div>
-              </div>
-            </div>
-          </div>
         </div>
       </aside>
     </>
   );
 };
 
-export default Sidebar;
+export default SidebarMobile;
