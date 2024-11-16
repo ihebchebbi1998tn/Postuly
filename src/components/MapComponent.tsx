@@ -138,34 +138,44 @@ const MapComponent: React.FC<MapComponentProps> = ({ onOpenSidebar }) => {
             />
           ))}
 
-          {selectedMarker && (
-            <InfoWindow
-              position={selectedMarker.position}
-              onCloseClick={() => setSelectedMarker(null)}
-            >
-              <div className="bg-gray-900 text-white p-4 rounded-lg max-w-xs">
-                <h3 className="text-lg font-semibold text-blue-400 mb-2">
-                  {selectedMarker.title}
-                </h3>
-                <p className="text-sm text-gray-300 mb-2">
-                  {selectedMarker.company}
-                </p>
-                <p className="text-sm text-gray-400 mb-3">
-                  {selectedMarker.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {selectedMarker.skills.map((skill: string, index: number) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 text-xs rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </InfoWindow>
-          )}
+{selectedMarker && (
+  <InfoWindow
+    position={selectedMarker.position}
+    onCloseClick={() => setSelectedMarker(null)}
+  >
+    <div className="bg-gray-900 text-white p-4 rounded-lg max-w-xs">
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-semibold text-blue-400 mb-2">
+          {selectedMarker.title}
+        </h3>
+        {/* The close button (X) is placed here */}
+        <button 
+          onClick={() => setSelectedMarker(null)} 
+          className="text-white text-xl hover:text-gray-400"
+        >
+          &times;
+        </button>
+      </div>
+      <p className="text-sm text-gray-300 mb-2">
+        {selectedMarker.company}
+      </p>
+      <p className="text-sm text-gray-400 mb-3">
+        {selectedMarker.description}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {selectedMarker.skills.map((skill: string, index: number) => (
+          <span
+            key={index}
+            className="px-2 py-1 text-xs rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </InfoWindow>
+)}
+
         </GoogleMap>
 
         {notification && (
