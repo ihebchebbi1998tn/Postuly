@@ -30,41 +30,36 @@ const MapComponent: React.FC<MapComponentProps> = ({ onOpenSidebar }) => {
   const mapOptions = {
     styles: [
       {
-        "elementType": "geometry",
-        "stylers": [{ "color": "#242f3e" }]
+        elementType: "geometry",
+        stylers: [{ color: "#0c1015" }],
       },
       {
-        "elementType": "labels.text.fill",
-        "stylers": [{ "color": "#746855" }]
+        elementType: "labels",
+        stylers: [{ visibility: "off" }],
       },
       {
-        "featureType": "administrative.locality",
-        "elementType": "labels.text.fill",
-        "stylers": [{ "color": "#d59563" }]
+        featureType: "administrative.country",
+        elementType: "geometry.stroke",
+        stylers: [{ color: "#3b82f6" }, { weight: 0.5 }],
       },
       {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [{ "color": "#17263c" }]
+        featureType: "landscape",
+        elementType: "geometry",
+        stylers: [{ color: "#151a23" }],
       },
       {
-        "featureType": "water",
-        "elementType": "labels.text.fill",
-        "stylers": [{ "color": "#515c6d" }]
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [{ color: "#0a0d12" }],
       },
-      {
-        "featureType": "water",
-        "elementType": "labels.text.stroke",
-        "stylers": [{ "color": "#17263c" }]
-      }
     ],
     disableDefaultUI: true,
-    zoomControl: true,
+    zoomControl: false,
     mapTypeControl: false,
     scaleControl: false,
     streetViewControl: false,
     rotateControl: false,
-    fullscreenControl: false
+    fullscreenControl: false,
   };
 
   // Sample job data
