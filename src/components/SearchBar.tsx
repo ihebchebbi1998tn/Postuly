@@ -9,7 +9,7 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onOpenSidebar }) => {
   return (
-    <div className="relative px-4 lg:px-0 flex items-center gap-2">
+    <div className="flex-1 flex items-center gap-2">
       {/* Mobile Menu Button */}
       <button
         onClick={onOpenSidebar}

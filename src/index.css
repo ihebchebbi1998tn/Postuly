@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* For Webkit Browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1e1e1e; /* Dark theme background */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #3490dc; /* Blue color */
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #1f77b4; /* Lighter blue on hover */
+  }
+  
+  /* For Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #3490dc #1e1e1e;
+  }
+  
